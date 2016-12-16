@@ -125,6 +125,29 @@ CREATE TYPE BODY Degree_T AS
 END;
 
 --person
+CREATE OR REPLACE TYPE Person_T AS OBJECT (
+  pers_id VARCHAR2(10),
+  pers_surname VARCHAR2(20),
+  pers_fname VARCHAR2(20), 
+  pers_title VARCHAR2(10), 
+  pers_address VARCHAR2(50), 
+  pers_phone VARCHAR2(12), 
+  pers_postcode NUMBER, 
+  in_campus REF Campus_T,
+ MEMBER PROCEDURE insert_person(
+   new_pers_id IN VARCHAR2,
+   new_pers_surname IN VARCHAR2,
+   new_pers_fname IN VARCHAR2, 
+   new_pers_title IN VARCHAR2,
+   new_pers_address IN VARCHAR2,
+   new_pers_phone IN VARCHAR2, 
+   new_pers_postcode IN NUMBER, 
+   new_campus_location IN VARCHAR2),
+ MEMBER PROCEDURE delete_person)
+ NOT FINAL
+/
+CREATE TABLE Person OF Person_T (pers_id NOT NULL, PRIMARY KEY (pers_id));
+
 
 --staff
 
